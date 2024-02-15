@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body >
+
+
+	
+
+<br>
+<br>
+
+
+
+
+	<!-- Create HTML registration form -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+
+
+				
+
+
+<br>
+
+				<h1 style="font-style: oblique;"><center>Registration</center> </h1><br>
+
+				<form th:action="@{/register}" 
+						method="post"
+						role="form"
+				 		th:object="${user}">
+					
+					
+					<div class="form-group">
+						<label class="control-label" for="firstName"> First Name </label>
+						<input id="firstName" class="form-control" th:field="*{firstName}"
+							required autofocus="autofocus" placeholder="Enter Your Firstname" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="lastName"> Last Name </label>
+						 <input id="lastName" class="form-control" th:field="*{lastName}"
+							required autofocus="autofocus" placeholder="Enter Your Lastname" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="email"> Email </label> 
+						<input id="email" class="form-control" th:field="*{email}" required
+							autofocus="autofocus" placeholder="Enter Your Email"/>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="password"> Password </label>
+						 <input id="password" class="form-control" type="password"
+							th:field="*{password}" required autofocus="autofocus" placeholder="Enter Your Password"/>
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-success"   >Register</button>
+						<span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+					</div>
+					
+					<br>
+					
+				
+					<!-- success message -->
+					<div th:if="${param.success}">
+					<script>
+    				setTimeout(function() {alert  ("You've registered successfully");}, 500);
+  					</script>
+					</div>  
+				
+				
+				
+					<!-- Error message -->
+					<div th:if="${param.error}">
+					<script>
+    				setTimeout(function() {alert  ("Email does exist !");}, 500);
+  					</script>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

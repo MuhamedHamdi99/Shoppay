@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Home</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+	
+</head>
+<body>
+	
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	
+			<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div  class="container">
+		
+			
+			<a  class="navbar-brand ; fas fa-shopping-cart  " href="#" th:href="@{/adminPagee}"> Shoppay</a>
+			<a sec:authorize="isAuthenticated()" style="float: right;" class="navbar-brand ; fas fa-sign-out-alt"   href="#" th:href="@{/logout}"> Logout</a>
+			<a style="float: right;" class="navbar-brand ; fas fa-user-circle"  href="#" th:href="@{/}" sec:authentication=" principal.FirstName"> </a>
+		    <a  style="float: right;" class="navbar-brand ; fas fa-home"   href="#" th:href="@{/adminPagee}"> Home</a>
+
+		</div>
+	</nav>
+	
+	<!-- This is a single-line comment 
+		<img src="/images/Admin/icon.jpg" alt="Shoppay">
+	<a  class="navbar-brand ; fas fa-dumbbell" href="#" th:href="@{/adminPagee}"> Shoppay</a>
+			<a style="float: right;" class="navbar-brand ; fas fa-address-book" href="#" th:href="@{/}" > Contact</a>
+		    <a style="float: right;" class="navbar-brand ; fas fa-info"  href="#" th:href="@{/}"> About</a>
+	-->
+	
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<br><br>
+
+<div class="jumbotron text-center">
+    <h1 class="display-4">Welcome, Admin</h1>
+    <p>Easily manage your data from this admin dashboard </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 pt-3">
+            <div class="card" style="background-color:white;">
+                <div class="card-body">
+					<img src="/images/Admin/category.jpg" alt="Image" style="width: 100px; height: 100px ">
+                    <h4 class="card-title">Categories</h4>
+                    <p class="card-text">Manage the categories here.</p>
+                    <a href="#" th:href="@{/admin/categories}" class="btn btn-primary">Manage</a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 pt-3">
+            <div class="card" style="background-color:white;">
+                <div class="card-body">
+					<img src="/images/Admin/products.jpg" alt="Image" style="width: 100px; height: 100px  ">
+                    <h4 class="card-title">Products</h4>
+                    <p class="card-text">Manage all the products here.</p>
+                    <a href="#" th:href="@{/admin/products}" class="btn btn-primary">Manage</a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+</body>
+</html>
