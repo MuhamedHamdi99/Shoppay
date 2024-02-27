@@ -1,7 +1,6 @@
 package com.global.Controller;
 
 import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,17 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.global.DTO.UserDTO;
-import com.global.Entity.User;
+import com.global.Entity.*;
+import com.global.Global.GlobalCart;
 import com.global.Repositopy.UserRepo;
+import com.global.Service.CategoryServes;
+import com.global.Service.ProductServes;
 import com.global.Service.UserService;
 
 @Controller
-@RequestMapping("/")
-public class MainController {
+public class RegisterAndLoginController {
 
-	
+
+	@Autowired
+	CategoryServes categoryServes;
+	@Autowired
+	ProductServes productServes;
 	@Autowired
 	private UserDetailsService userDetailsService;
 	@Autowired
@@ -28,12 +32,12 @@ public class MainController {
 	@Autowired
 	private UserRepo userRepo;
 	
-	@GetMapping("register")
+	@GetMapping("/register")
 	public String OpenRegistert(@ModelAttribute("user") UserDTO userDto){
 		return "registerr";
 	}
 	
-	@PostMapping("register")
+	@PostMapping("/register")
 	public String Save_User_Regist(@ModelAttribute("user") UserDTO userdto) {
 		User uuser = userRepo.findByEmail(userdto.getEmail());
 		if (uuser == null) {
@@ -45,20 +49,23 @@ public class MainController {
 	}
 	
 	
-	@GetMapping("login")
+	@GetMapping("/login")
 	public String login(){
+		GlobalCart.cart.clear();
 		return "login";
 	}
 	
-	@GetMapping("userPage")
+	@GetMapping("/userPage")
 	public String loginn(
 		Model model , Principal principal){
-	
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("user", userDetails);
-		return "UserHome";
+		model.addAttribute("categories", categoryServes.findAll());
+		model.addAttribute("products",productServes.FindProduct());
+		model.addAttribute("cartCount",GlobalCart.cart.size());
+		return "Shop";
 	}
-	@GetMapping("adminPage")
+	@GetMapping("/adminPage")
 	public String loginnn(Model model , Principal principal){
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		model.addAttribute("user", userDetails);
